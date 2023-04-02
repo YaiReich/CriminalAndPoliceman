@@ -1,0 +1,46 @@
+public class Policeman extends Player {
+
+    private static final int MAX_NUM_CRIMINALS = 10;
+    protected Criminal[] arrestedCriminals;
+    private int totalArrested;
+
+    public Policeman(String name, int strength) {
+        super(name, strength);
+        arrestedCriminals = new Criminal[MAX_NUM_CRIMINALS];
+        totalArrested = 0;
+    }
+
+    public boolean arrestedAll() {
+        return totalArrested == MAX_NUM_CRIMINALS;
+    }
+
+    public boolean arrest(Criminal criminal) {
+        if (this.isAlive() && criminal.isAlive()) {
+                if (!arrestedAll()) {
+                    if (strength > criminal.strength) {
+                        strength -= criminal.knockOut();
+                        arrestedCriminals[totalArrested] = criminal;
+                        totalArrested ++;
+                        return true;
+                    } else if (strength < criminal.strength) {
+                        criminal.strength -= this.knockOut();
+                    } else {
+                        this.knockOut();
+                        criminal.knockOut();
+                    }
+                }
+            }
+        return false;
+    }
+
+    public void showArrestedCriminals() {
+        if (totalArrested > 0) {
+            System.out.println("The policeman name is " + name);
+            for (int i = 0; i < arrestedCriminals.length && arrestedCriminals[i] != null; i++) {
+                System.out.println("Criminal number " + (i + 1) + " is " + arrestedCriminals[i].name);
+            }
+        } else {
+            System.out.println("Policeman " + name + " commit no arrest");
+        }
+    }
+}
