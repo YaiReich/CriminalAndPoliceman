@@ -4,8 +4,5 @@ public class Criminal extends Player {
         super(name, strength);
     }
 
-    public Criminal(Criminal criminal) {
-        super(criminal.name, criminal.strength);
-
-    }
+    
 }
