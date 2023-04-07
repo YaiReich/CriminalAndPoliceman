@@ -7,4 +7,19 @@ public abstract class Player {
         this.strength = strength;
     }
 
-  
+    @Override
+    public String toString() {
+        return "The Player name is " + name + " and his strength is " + strength;
+    }
+
+    protected boolean isAlive() {
+        return strength > 0;
+    }
+
+    protected int knockOut(){
+        int temp = strength;
+        strength = 0;
+        return temp;
+    }
+}
+
