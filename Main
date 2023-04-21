@@ -19,6 +19,18 @@ public class Main {
         policemen[1] = new Policeman("James", 19);
         policemen[2] = new Policeman("Jax", 50);
 
+        for (Policeman value : policemen) {
+            for (Criminal criminal : criminals) {
+                if (value.arrest(criminal)) {
+                    System.out.println(value + " arrested " + criminal);
+                }
+            }
+        }
 
+        for (Policeman policeman : policemen) {
+            policeman.showArrestedCriminals();
+        }
+    }
+}
 
 
